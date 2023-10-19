@@ -1,0 +1,28 @@
+﻿<Window x:Class="TurtleToastService.DemoApp.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurtleToastService.DemoApp"
+        xmlns:TurtleToast="clr-namespace:TurtleToastService.Service.ToastHost;assembly=Service"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainWindowDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Command="{Binding InformationLowCommand}" Content="Information low" Width="Auto" Height="Auto"/>
+            <Button Command="{Binding InformationMediumCommand}" Content="Information medium"/>
+            <Button Command="{Binding InformationHighCommand}" Content="Information high"/>
+        </StackPanel>
+        <TurtleToast:ToastHostView Margin="0 0 0 30"/>
+    </Grid>
+</Window>

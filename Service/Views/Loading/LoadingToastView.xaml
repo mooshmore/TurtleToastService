@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="TurtleToastService.Service.Views.Loading.LoadingToastView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TurtleToastService.Service.Views.Loading"
+             xmlns:controls="clr-namespace:Utilities.WPF.Controls"
+             xmlns:converters="clr-namespace:Utilities.WPF.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:NegativeToVisibilityConverter x:Key="NegativeToVisibility" NegativeIsCollapsed="False"/>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibility"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ToastStyling/DefaultStylingDictionary.xaml"/>
+                <ResourceDictionary Source="../../ToastStyling/ColorPalette.xaml"/>
+                <ResourceDictionary Source="../../ToastStyling/ControlsStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Style="{StaticResource LoadingImage}" Visibility="{Binding OperationsCount, Converter={StaticResource NegativeToVisibility}}" Source="/Utilities/WPF/Services/ToastMessageService/Views/Loading/loadingCircle.png"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <controls:SelectableTextBlock Text="{Binding Message}" Style="{StaticResource Message}"/>
+            <controls:SelectableTextBlock Text="{Binding SecondaryMessage}" Style="{StaticResource SecondaryMessage}" Visibility="{Binding SecondaryMessage, Converter={StaticResource NullToVisibility}}"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
