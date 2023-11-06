@@ -1,6 +1,6 @@
-﻿using TurtleToastService.Service.Service;
-using System;
+﻿using System;
 using System.Timers;
+using TurtleToastService.Service.Core;
 
 namespace TurtleToastService.Service.Views.Information
 {
@@ -26,7 +26,7 @@ namespace TurtleToastService.Service.Views.Information
         /// <param name="message">The message to display.</param>
         /// <param name="secondaryMessage">The secondary message to display.</param>
         /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
-        public InformationToastViewModel(string message, string secondaryMessage, Priority priority) : this (message, priority)
+        public InformationToastViewModel(string message, string secondaryMessage, Priority priority) : this(message, priority)
         {
             SecondaryMessage = secondaryMessage;
         }

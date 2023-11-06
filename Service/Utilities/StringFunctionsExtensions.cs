@@ -34,8 +34,8 @@ namespace System
         public static string TrimTo(this string text, string searchedValue, bool includeSearchedValue = false)
         {
             return includeSearchedValue
-                ? text.Substring(0, text.IndexOf(searchedValue) + searchedValue.Length)
-                : text.Substring(0, text.IndexOf(searchedValue));
+                ? text[..(text.IndexOf(searchedValue) + searchedValue.Length)]
+                : text[..text.IndexOf(searchedValue)];
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace System
         /// <param name="searchedValue">The first value that the text will be trimmed to.</param>
         /// <param name="includeSearchedValue">Whether to include the searched value in the returned text or not. True by default.</param>
         /// <returns>The trimmed text.</returns>
-        public static string TrimFrom(this string text, string searchedValue, bool includeSearchedValue = false) => includeSearchedValue ? text.Substring(text.IndexOf(searchedValue)) : text.Substring(text.IndexOf(searchedValue) + searchedValue.Length);
+        public static string TrimFrom(this string text, string searchedValue, bool includeSearchedValue = false) => includeSearchedValue ? text[text.IndexOf(searchedValue)..] : text[(text.IndexOf(searchedValue) + searchedValue.Length)..];
 
         /// <summary>
         /// Returns a value indicating whether a specified substring occurs within this string.

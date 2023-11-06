@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 
-namespace TurtleToastService.Service.Service
+namespace TurtleToastService.Service.Core
 {
     /// <summary>
     /// A collection of helper methods for the <see cref="TurtleToastService"/>.
@@ -38,7 +38,7 @@ namespace TurtleToastService.Service.Service
         /// <returns>The created timer.</returns>
         public static Timer CreateTimer(EventHandler eventHandler, string message)
         {
-            Timer timer = new Timer
+            Timer timer = new()
             {
                 Interval = CalculateDisplayTime(message).TotalMilliseconds,
                 AutoReset = false,

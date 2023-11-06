@@ -9,22 +9,22 @@ namespace TurtleToastService.Service.Utilities.WPF.Converters
     /// <summary>
     /// The management class for automatic loading data templates
     /// </summary>
-    public sealed class DataTemplateManager
+    public static class DataTemplateManager
     {
         /// <summary>
         /// String value added after the name of a view model object (Default is 'ViewModel').
         /// </summary>
-        public string ViewModelNameSuffix { get; set; } = "ViewModel";
+        private static string ViewModelNameSuffix { get; set; } = "ViewModel";
 
         /// <summary>
         /// String value added after the name of a view (Default is 'View').
         /// </summary>
-        public string ViewNameSuffix { get; set; } = "View";
+        private static string ViewNameSuffix { get; set; } = "View";
 
         /// <summary>
         /// Load assembly object and register data templates based on naming convention, e.g., FooViewModel --> FooView
         /// </summary>
-        public void LoadDataTemplatesByConvention()
+        public static void LoadDataTemplatesByConvention()
         {
             var assembly = Assembly.GetCallingAssembly();
             var assemblyTypes = assembly.GetTypes();
@@ -47,7 +47,7 @@ namespace TurtleToastService.Service.Utilities.WPF.Converters
         /// </summary>
         /// <typeparam name="VM">ViewModel type</typeparam>
         /// <typeparam name="V">View Type</typeparam>
-        public void RegisterDataTemplate<VM, V>()
+        public static void RegisterDataTemplate<VM, V>()
         {
             var template = CreateTemplate(typeof(VM), typeof(V));
             Application.Current.Resources.Add(template.DataTemplateKey, template);
@@ -58,19 +58,20 @@ namespace TurtleToastService.Service.Utilities.WPF.Converters
         /// </summary>
         /// <param name="viewModel">ViewModel type</param>
         /// <param name="view">View Type</param>
-        public void RegisterDataTemplate(Type viewModel, Type view)
+        private static void RegisterDataTemplate(Type viewModel, Type view)
         {
             var template = CreateTemplate(viewModel, view);
             Application.Current.Resources.Add(template.DataTemplateKey, template);
         }
 
         //Maps data templates (http://www.ikriv.com/dev/wpf/DataTemplateCreation/)
-        private DataTemplate CreateTemplate(Type viewModelType, Type viewType)
+        private static DataTemplate CreateTemplate(Type viewModelType, Type viewType)
         {
-            const string xamlTemplate = "<DataTemplate DataType=\"{{x:Type vm:{0}}}\"><v:{1} /></DataTemplate>";
-            var xaml = string.Format(xamlTemplate, viewModelType.Name, viewType.Name, viewModelType.Namespace, viewType.Namespace);
-            var context = new ParserContext();
-            context.XamlTypeMapper = new XamlTypeMapper(new string[0]);
+            string xaml = $"<DataTemplate DataType=\"{{x:Type vm:{viewModelType.Name}}}\"><v:{viewType.Name} /></DataTemplate>";
+            var context = new ParserContext
+            {
+                XamlTypeMapper = new XamlTypeMapper(Array.Empty<string>())
+            };
             context.XamlTypeMapper.AddMappingProcessingInstruction("vm", viewModelType.Namespace, viewModelType.Assembly.FullName);
             context.XamlTypeMapper.AddMappingProcessingInstruction("v", viewType.Namespace, viewType.Assembly.FullName);
 

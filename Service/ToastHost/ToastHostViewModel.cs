@@ -1,4 +1,4 @@
-﻿using TurtleToastService.Service.Service;
+﻿using TurtleToastService.Service.Core;
 using Utilities.WPF.Bases;
 
 namespace TurtleToastService.Service.ToastHost

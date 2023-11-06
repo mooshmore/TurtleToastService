@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using TurtleToastService.Service.Utilities.WPF.Converters;
 
-namespace TurtleToastService.Service.Service
+namespace TurtleToastService.Service.Core
 {
     /// <summary>
     /// A service implementation for displaying toast messages.
@@ -13,13 +13,13 @@ namespace TurtleToastService.Service.Service
     {
         public TurtleToastService()
         {
-            new DataTemplateManager().LoadDataTemplatesByConvention();
+            DataTemplateManager.LoadDataTemplatesByConvention();
         }
 
         /// <summary>
         /// The queue containing the toast messages.
         /// </summary>
-        private Queue<IToast> _toastQueue = new Queue<IToast>();
+        private readonly Queue<IToast> _toastQueue = new();
 
         /// <summary>
         /// The viewModel responsible for hosting the toast messages.

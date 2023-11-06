@@ -29,7 +29,7 @@ namespace Utilities.WPF.Behaviors
 
         private static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            if (!(obj is TextBox textBox))
+            if (obj is not TextBox textBox)
                 return;
 
             if ((bool)e.NewValue)
@@ -43,7 +43,7 @@ namespace Utilities.WPF.Behaviors
 
         private static async void TextBoxOnGotFocus(object sender, RoutedEventArgs e)
         {
-            if (!(sender is TextBox textBox))
+            if (sender is not TextBox textBox)
                 return;
 
             // A small delay is needed for the textbox to finish the "focusing" action,

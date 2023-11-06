@@ -13,7 +13,7 @@ namespace TurtleToastService.Service.ToastHost
         public ToastHostView()
         {
             InitializeComponent();
-            this.DataContext = Service.TurtleToastService.ToastHost;
+            this.DataContext = Core.TurtleToastService.ToastHost;
         }
     }
 }

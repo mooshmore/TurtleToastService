@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
+using TurtleToastService.Service.Utilities.WPF.Converters;
 
 namespace Utilities.WPF.Behaviors
 {
@@ -31,7 +31,7 @@ namespace Utilities.WPF.Behaviors
 
         private static void OnShiftScrollingEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(d is DataGrid dataGrid))
+            if (d is not DataGrid dataGrid)
                 return;
 
             if ((bool)e.NewValue)
@@ -43,7 +43,7 @@ namespace Utilities.WPF.Behaviors
         private static void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             DataGrid dataGrid = (DataGrid)sender;
-            ScrollViewer scrollView = FindVisualChild<ScrollViewer>(dataGrid);
+            ScrollViewer? scrollView = WPFUtilities.FindVisualChild<ScrollViewer>(dataGrid);
             if (Keyboard.Modifiers == ModifierKeys.Shift && scrollView != null)
             {
                 e.Handled = true;
@@ -51,32 +51,6 @@ namespace Utilities.WPF.Behaviors
                 double hChange = e.Delta > 0 ? -speed : speed;
                 scrollView.ScrollToHorizontalOffset(scrollView.HorizontalOffset + hChange);
             }
-        }
-
-        /// <summary>
-        /// Finds the visual child of a element.
-        /// Also works for embedded elements, like a scrollViewer inside of a dataGrid.
-        /// </summary>
-        /// <typeparam name="T">The type of the control to look for.</typeparam>
-        /// <param name="control">The control that the element is in.</param>
-        /// <returns>The found element.</returns>
-        public static T? FindVisualChild<T>(DependencyObject control) where T : DependencyObject
-        {
-            if (control != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(control); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(control, i);
-                    if (child != null && child is T element)
-                    {
-                        return element;
-                    }
-
-                    T childItem = FindVisualChild<T>(child);
-                    if (childItem != null) return childItem;
-                }
-            }
-            return null;
         }
     }
 }

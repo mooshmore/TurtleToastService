@@ -75,7 +75,6 @@ namespace TurtleToastService.Service.Utilities.WPF.Converters
         /// <summary>
         /// Returns the first visible cell from the collection, by first means the first found on the list.
         /// </summary>
-        /// <param name="cells"></param>
         /// <returns>The first visible cell from the collection if one was found; Otherwise null.</returns>
         public static DataGridCell? GetFirstVisibleCell(IList<DataGridCellInfo> cells)
         {
@@ -137,7 +136,7 @@ namespace TurtleToastService.Service.Utilities.WPF.Converters
         /// so it might catch some wrong elements. <br/>
         /// Worked well for me.
         /// </remarks>
-        public static Control? FindFirstInput(DependencyObject depObj)
+        public static Control? FindFirstInput(DependencyObject? depObj)
         {
             if (depObj != null)
             {
@@ -165,19 +164,19 @@ namespace TurtleToastService.Service.Utilities.WPF.Converters
         /// <typeparam name="T">The type of the control to look for.</typeparam>
         /// <param name="control">The control that the element is in.</param>
         /// <returns>The found visual child.</returns>
-        public static T? FindVisualChild<T>(DependencyObject control) where T : DependencyObject
+        public static T? FindVisualChild<T>(DependencyObject? control) where T : DependencyObject
         {
             if (control != null)
             {
                 for (int i = 0; i < VisualTreeHelper.GetChildrenCount(control); i++)
                 {
-                    DependencyObject child = VisualTreeHelper.GetChild(control, i);
+                    DependencyObject? child = VisualTreeHelper.GetChild(control, i);
                     if (child != null && child is T t)
                     {
                         return t;
                     }
 
-                    T childItem = FindVisualChild<T>(child);
+                    T? childItem = FindVisualChild<T>(child);
                     if (childItem != null) return childItem;
                 }
             }

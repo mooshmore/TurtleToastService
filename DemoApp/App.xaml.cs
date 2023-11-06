@@ -13,7 +13,7 @@ namespace TurtleToastService.DemoApp
             base.OnStartup(e);
 
             // Assign viewModels to views
-            new DataTemplateManager().LoadDataTemplatesByConvention();
+            DataTemplateManager.LoadDataTemplatesByConvention();
         }
     }
 }

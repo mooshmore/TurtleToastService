@@ -1,5 +1,5 @@
-﻿using TurtleToastService.Service.Service;
-using System;
+﻿using System;
+using TurtleToastService.Service.Core;
 using Utilities.WPF.Bases;
 
 namespace TurtleToastService.Service.Views.Confirmation
@@ -18,7 +18,7 @@ namespace TurtleToastService.Service.Views.Confirmation
         {
             Message = message;
             Priority = priority;
-            AcceptToastCommand = new RelayCommand(() => Completed.Invoke(null, null));
+            AcceptToastCommand = new RelayCommand(() => Completed?.Invoke(null, null));
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace TurtleToastService.Service.Views.Confirmation
         }
 
         /// <inheritdoc/>
-        public string Message { get; set; }
+        public string? Message { get; set; }
         /// <inheritdoc/>
-        public string SecondaryMessage { get; set; }
+        public string? SecondaryMessage { get; set; }
         /// <inheritdoc/>
         public Priority Priority { get; set; }
         /// <inheritdoc/>

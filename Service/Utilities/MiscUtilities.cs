@@ -155,7 +155,7 @@ namespace TurtleToastService.Service.Utilities
         /// See https://learn.microsoft.com/en-us/dotnet/api/microsoft.win32.filedialog.filter?view=windowsdesktop-7.0 for more.
         /// </param>
         /// <returns>The path to the file if the user has picked a file; Otherwise null.</returns>
-        public static string DisplayOpenFileDialog(string windowTitle = "Select file", string filter = "All files (*.*)|*.*")
+        public static string? DisplayOpenFileDialog(string windowTitle = "Select file", string filter = "All files (*.*)|*.*")
         {
             OpenFileDialog openFileDialog = new()
             {

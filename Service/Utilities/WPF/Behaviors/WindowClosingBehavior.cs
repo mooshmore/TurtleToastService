@@ -45,8 +45,7 @@ namespace Utilities.WPF.Behaviors
         /// <param name="e">The event data for the PropertyChanged event.</param>
         private static void ClosingChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
-            var window = target as Window;
-            if (window != null)
+            if (target is Window window)
             {
                 if (e.NewValue != null)
                     window.Closing += Window_Closing;
@@ -62,8 +61,7 @@ namespace Utilities.WPF.Behaviors
         /// <param name="e">The CancelEventArgs for the event.</param>
         private static void Window_Closing(object sender, CancelEventArgs e)
         {
-            var window = sender as Window;
-            if (window != null)
+            if (sender is Window window)
             {
                 var closing = GetClosing(window);
                 if (closing != null)

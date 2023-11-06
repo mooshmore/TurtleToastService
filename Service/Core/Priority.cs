@@ -1,4 +1,4 @@
-﻿namespace TurtleToastService.Service.Service
+﻿namespace TurtleToastService.Service.Core
 {
     /// <summary>
     /// Sets the priority of the toast message.

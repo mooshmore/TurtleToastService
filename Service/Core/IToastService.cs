@@ -1,4 +1,4 @@
-﻿namespace TurtleToastService.Service.Service
+﻿namespace TurtleToastService.Service.Core
 {
     /// <summary>
     /// A service for displaying toast messages.

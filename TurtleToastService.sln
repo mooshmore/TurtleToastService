@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{C31584B4-C829-42D1-8A32-66330C8048E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurtleToastService.Service", "Service\TurtleToastService.Service.csproj", "{C31584B4-C829-42D1-8A32-66330C8048E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp", "DemoApp\DemoApp.csproj", "{FF2E6FF8-2250-4B19-AD69-07A2C17BE954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurtleToastService.DemoApp", "DemoApp\TurtleToastService.DemoApp.csproj", "{FF2E6FF8-2250-4B19-AD69-07A2C17BE954}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

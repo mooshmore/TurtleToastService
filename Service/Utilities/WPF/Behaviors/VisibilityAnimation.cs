@@ -35,7 +35,7 @@ namespace Utilities.WPF.Behaviors
         /// <summary>
         /// List of hooked objects
         /// </summary>
-        private static readonly Dictionary<FrameworkElement, bool> _hookedElements = new Dictionary<FrameworkElement, bool>();
+        private static readonly Dictionary<FrameworkElement, bool> _hookedElements = new();
 
         /// <summary>
         /// Get AnimationType attached property
@@ -170,7 +170,7 @@ namespace Utilities.WPF.Behaviors
             // If we get here, it means we have to start fade in or fade out animation. 
             // In any case return value of this method will be Visibility.Visible, 
             // to allow the animation.
-            DoubleAnimation doubleAnimation = new DoubleAnimation
+            DoubleAnimation doubleAnimation = new()
             {
                 Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration))
             };

@@ -29,10 +29,10 @@ namespace TurtleToastService.Service.Utilities
                 ? StringComparison.OrdinalIgnoreCase
                 : StringComparison.Ordinal;
 
-            if (values.Count() == 0)
+            if (!values.Any())
                 return emptyArrayIsTrue;
             else
-                return values.Any(value => text.IndexOf(value, comparison) >= 0);
+                return values.Any(value => text.Contains(value, comparison));
         }
 
         /// <summary>

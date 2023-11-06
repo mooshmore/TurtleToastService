@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TurtleToastService.Service.Service
+namespace TurtleToastService.Service.Core
 {
     /// <summary>
     /// The interaface for the toast message.
@@ -15,7 +15,7 @@ namespace TurtleToastService.Service.Service
         /// <summary>
         /// The seconday message of the toast .
         /// </summary>
-        string SecondaryMessage { get; set; }
+        string? SecondaryMessage { get; set; }
 
         /// <summary>
         /// The priority of the toast.
@@ -25,7 +25,7 @@ namespace TurtleToastService.Service.Service
         /// <summary>
         /// A event that is raised when the toast completes it's display.
         /// </summary>
-        EventHandler Completed { get; set; }
+        EventHandler? Completed { get; set; }
 
         /// <summary>
         /// Starts the timers or other processes on the toast message, if there are any.
