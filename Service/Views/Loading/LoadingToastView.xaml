@@ -10,8 +10,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:NegativeToVisibilityConverter x:Key="NegativeToVisibility" NegativeIsCollapsed="False"/>
             <converters:NullToVisibilityConverter x:Key="NullToVisibility"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../ToastStyling/DefaultStylingDictionary.xaml"/>
                 <ResourceDictionary Source="../../ToastStyling/ColorPalette.xaml"/>
@@ -21,13 +21,14 @@
     </UserControl.Resources>
 
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Style="{StaticResource LoadingImage}" Visibility="{Binding OperationsCount, Converter={StaticResource NegativeToVisibility}}" Source="/Utilities/WPF/Services/ToastMessageService/Views/Loading/loadingCircle.png"/>
-        <StackPanel Grid.Column="1" Orientation="Vertical">
+        <Image Style="{StaticResource LoadingImage}" Visibility="{Binding DisplayLoadingIcon, Converter={StaticResource BoolToVisibility}}" Source="loadingCircle.png"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
             <controls:SelectableTextBlock Text="{Binding Message}" Style="{StaticResource Message}"/>
             <controls:SelectableTextBlock Text="{Binding SecondaryMessage}" Style="{StaticResource SecondaryMessage}" Visibility="{Binding SecondaryMessage, Converter={StaticResource NullToVisibility}}"/>
         </StackPanel>

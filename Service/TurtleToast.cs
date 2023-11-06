@@ -1,8 +1,8 @@
-﻿using TurtleToastService.Service.Service;
+﻿using System;
+using TurtleToastService.Service.Core;
 using TurtleToastService.Service.Views.Confirmation;
 using TurtleToastService.Service.Views.Information;
 using TurtleToastService.Service.Views.Loading;
-using System;
 
 namespace TurtleToastSerice.Service
 {
@@ -11,7 +11,7 @@ namespace TurtleToastSerice.Service
     /// </summary>
     public static class TurtleToast
     {
-        private static readonly IToastService _service = new TurtleToastService.Service.Service.TurtleToastService();
+        private static readonly IToastService _service = new TurtleToastService.Service.Core.TurtleToastService();
 
         #region Service commands
 
@@ -94,27 +94,24 @@ namespace TurtleToastSerice.Service
         /// Displays toast message which shows a progress of an action.
         /// </summary>
         /// <param name="message">The message to display.</param>
-        /// <param name="secondaryMessage">The secondary message to display.</param>
-        /// <param name="operationsCount">The total count of operations that will be performed.</param>
+        /// <param name="totalOperationsCount">The total count of operations that will be performed.</param>
         /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
         /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
-        /// <param name="succesMessage">The message that will be displayed after the loading process ends.</param>
+        /// <param name="succesMessage">The message that will be displayed after the loading process ends. Set to null if no succes message should be displayed.</param>
         /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
         /// <returns>The completed event that can be used to manually end the message.</returns>
-        public static EventHandler Loading(string message, string secondaryMessage = null, int operationsCount = -1, EventHandler<EventArgs>? progressEvent = null, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
+        public static EventHandler Loading(string message, int totalOperationsCount, ref EventHandler progressEvent, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
         {
             var toast = new LoadingToastViewModel(
                    message: message,
-                   secondaryMessage: secondaryMessage,
-                   operationsCount: operationsCount,
+                   totalOperationsCount: totalOperationsCount,
                    progressEvent: progressEvent,
                    displayMode: displayMode,
                    succesMessage: succesMessage,
                    priority: priority
                    );
 
-            if (progressEvent != null)
-                AssignIncrementEvents(toast, progressEvent);
+            new LoadingToastEventsHandler(toast, ref progressEvent);
 
             _service.EnqueueToast(toast);
 
@@ -122,25 +119,61 @@ namespace TurtleToastSerice.Service
         }
 
         /// <summary>
-        /// Assigns the events responsible for incrementing the progress value.
+        /// Displays toast message which shows a progress of an action.
         /// </summary>
-        /// <param name="toast">The toast to increment the progress value of.</param>
+        /// <param name="message">The message to display.</param>
+        /// <param name="secondaryMessage">The secondary message to display.</param>
         /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
-        private static void AssignIncrementEvents(LoadingToastViewModel toast, EventHandler<EventArgs> progressEvent)
+        /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
+        /// <param name="succesMessage">The message that will be displayed after the loading process ends. Set to null if no succes message should be displayed.</param>
+        /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
+        /// <returns>The completed event that can be used to manually end the message.</returns>
+        public static EventHandler Loading(string message, string secondaryMessage, ref EventHandler progressEvent, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
         {
-            progressEvent += IncrementProgress;
-            toast.Completed += RemoveEventSubscriptions;
+            var toast = new LoadingToastViewModel(
+                   message: message,
+                   secondaryMessage: secondaryMessage,
+                   progressEvent: progressEvent,
+                   displayMode: displayMode,
+                   succesMessage: succesMessage,
+                   priority: priority
+                   );
 
-            void IncrementProgress(object obj, EventArgs args)
-            {
-                toast.IncrementProgress();
-            }
+            new LoadingToastEventsHandler(toast, ref progressEvent);
 
-            void RemoveEventSubscriptions(object obj, EventArgs args)
-            {
-                progressEvent -= IncrementProgress;
-                toast.Completed -= RemoveEventSubscriptions;
-            }
+            _service.EnqueueToast(toast);
+
+            return toast.Completed;
+        }
+
+        /// <summary>
+        /// Displays toast message which shows a progress of an action.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        /// <param name="secondaryMessage">The secondary message to display.</param>
+        /// <param name="totalOperationsCount">The total count of operations that will be performed.</param>
+        /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
+        /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
+        /// <param name="succesMessage">The message that will be displayed after the loading process ends. Set to null if no succes message should be displayed.</param>
+        /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
+        /// <returns>The completed event that can be used to manually end the message.</returns>
+        public static EventHandler Loading(string message, string secondaryMessage, int totalOperationsCount, ref EventHandler progressEvent, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
+        {
+            var toast = new LoadingToastViewModel(
+                   message: message,
+                   secondaryMessage: secondaryMessage,
+                   totalOperationsCount: totalOperationsCount,
+                   progressEvent: progressEvent,
+                   displayMode: displayMode,
+                   succesMessage: succesMessage,
+                   priority: priority
+                   );
+
+            new LoadingToastEventsHandler(toast, ref progressEvent);
+
+            _service.EnqueueToast(toast);
+
+            return toast.Completed;
         }
 
         #endregion

@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurtleToastService.DemoApp"
-        xmlns:TurtleToast="clr-namespace:TurtleToastService.Service.ToastHost;assembly=Service"
+        xmlns:TurtleToast="clr-namespace:TurtleToastService.Service.ToastHost;assembly=TurtleToastService.Service"
+        xmlns:TurtleToastService="clr-namespace:TurtleToastService.Service.Core;assembly=TurtleToastService.Service"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}">
@@ -18,11 +20,28 @@
     </Window.Resources>
     
     <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-            <Button Command="{Binding InformationLowCommand}" Content="Information low" Width="Auto" Height="Auto"/>
-            <Button Command="{Binding InformationMediumCommand}" Content="Information medium"/>
-            <Button Command="{Binding InformationHighCommand}" Content="Information high"/>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Low}" Content="Information low"/>
+                <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Medium}" Content="Information medium"/>
+                <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.High}" Content="Information high"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Low}" Content="Confirmation low"/>
+                <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Medium}" Content="Confirmation medium"/>
+                <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.High}" Content="Confirmation high"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Command="{Binding LoadingCountCommand}" Content="Loading counted"/>
+                <Button Command="{Binding LoadingInfiniteCommand}" Content="Loading infinite"/>
+                <Button Command="{Binding IncreaseCountCommand}" Content="Increase count loading"/>
+                <Button Command="{Binding EndLoadingCommand}" Content="End loading"/>
+            </StackPanel>
+
         </StackPanel>
+        
         <TurtleToast:ToastHostView Margin="0 0 0 30"/>
     </Grid>
 </Window>
