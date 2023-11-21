@@ -40,6 +40,11 @@
                 <Button Command="{Binding EndLoadingCommand}" Content="End loading"/>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Command="{Binding ClearAllToastsCommand}" Content="Clear all toasts"/>
+                <Button Command="{Binding ClearUpcomingToastsCommand}" Content="Clear upcoming toasts"/>
+            </StackPanel>
+
         </StackPanel>
         
         <TurtleToast:ToastHostView Margin="0 0 0 30"/>

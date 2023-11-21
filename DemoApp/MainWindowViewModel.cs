@@ -10,6 +10,7 @@ namespace TurtleToastService.DemoApp
     {
         public MainWindowViewModel()
         {
+            // Todo: change project folder naming to fit the projects.
             LoadingCountCommand = new RelayCommand(LoadingCountSimulation);
             LoadingInfiniteCommand = new RelayCommand(LoadingInfiniteSimulation);
             IncreaseCountCommand = new RelayCommand(() => LoadingEvent?.Invoke(null, null));
@@ -18,6 +19,12 @@ namespace TurtleToastService.DemoApp
 
         public RelayCommand InformationToastCommand { get; } = new RelayCommand(InformationToast);
         public RelayCommand ConfirmationToastCommand { get; } = new RelayCommand(ConfirmationToast);
+        public RelayCommand LoadingCountCommand { get; }
+        public RelayCommand LoadingInfiniteCommand { get; }
+        public RelayCommand IncreaseCountCommand { get; }
+        public RelayCommand EndLoadingCommand { get; }
+        public RelayCommand ClearAllToastsCommand { get; } = new RelayCommand(TurtleToast.ClearAll);
+        public RelayCommand ClearUpcomingToastsCommand { get; } = new RelayCommand(TurtleToast.ClearUpcoming);
 
         private static void InformationToast(object toastPriority)
         {
@@ -50,11 +57,6 @@ namespace TurtleToastService.DemoApp
                     break;
             }
         }
-
-        public RelayCommand LoadingCountCommand { get; }
-        public RelayCommand LoadingInfiniteCommand { get; }
-        public RelayCommand IncreaseCountCommand { get; }
-        public RelayCommand EndLoadingCommand { get; }
 
         private int _loadingMaxCount = 5;
 
