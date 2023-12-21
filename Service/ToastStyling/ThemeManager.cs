@@ -4,7 +4,7 @@ using System.Windows;
 namespace TurtleToastService.Service.ToastStyling
 {
     /// <summary>
-    /// 
+    /// A class responsible for controlling the theme of the service.
     /// </summary>
     public static class ThemeManager
     {

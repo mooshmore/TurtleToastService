@@ -4,7 +4,7 @@ using Utilities.WPF.Bases;
 namespace TurtleToastService.Service.ToastHost
 {
     /// <summary>
-    /// A implementation for viewModels hosting the toasts.
+    /// A viewModel which acts as a host for the toasts.
     /// </summary>
     public class ToastHostViewModel : ViewModelBase, IToastHost
     {

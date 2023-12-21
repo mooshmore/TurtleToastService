@@ -1,7 +1,7 @@
 ﻿namespace TurtleToastService.Service.Core
 {
     /// <summary>
-    /// A service for displaying toast messages.
+    /// A interface for the <see cref="TurtleToastService"/> service.
     /// </summary>
     public interface IToastService
     {

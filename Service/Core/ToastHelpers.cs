@@ -10,8 +10,12 @@ namespace TurtleToastService.Service.Core
     {
         /// <summary>
         /// Calculates display time based on the amount of words in the string.
-        /// The minimal amount of time is 3 seconds.
+        /// The minimal amount of time is 3 seconds, and the max display is 20 seconds.
         /// </summary>
+        /// <remarks>
+        /// The maximum display time exists as a failsafe in cases where there will be a extremely long text placed,
+        /// mostly due to some kind of a bug with the given text.
+        /// </remarks>
         /// <returns>The calculated time in seconds.</returns>
         public static TimeSpan CalculateDisplayTime(string text)
         {

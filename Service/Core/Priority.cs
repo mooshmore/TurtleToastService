@@ -3,6 +3,7 @@
     /// <summary>
     /// Sets the priority of the toast message.
     /// Items with a higher priority override the queue of all other toast messages.
+    /// Todo: Better summarize how the priorty system works.
     /// </summary>
     public enum Priority
     {
