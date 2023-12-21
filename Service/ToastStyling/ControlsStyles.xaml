@@ -1,16 +1,40 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../ToastStyling/ColorPalette.xaml" />
-        <ResourceDictionary Source="DefaultStylingDictionary.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
+    <CornerRadius x:Key="CornerRadiusValue">10</CornerRadius>
 
+    <Style x:Key="DefaultTextButton" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Padding" Value="8 3"/>
+        <Setter Property="Margin" Value="10 0 0 0"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+        <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="Opacity" Value="0.9"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Image.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.10" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Image.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.9" Duration="0:0:0.10" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style x:Key="MessagesPanel" TargetType="StackPanel">
         <Setter Property="Orientation" Value="Vertical"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{StaticResource Background}"/>
     </Style>
     
     <Style x:Key="LoadingImage" TargetType="Image">
@@ -43,12 +67,14 @@
     </Style>
 
     <Style x:Key="Message" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
 
     <Style x:Key="SecondaryMessage" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#626262"/>
         <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextSecondary}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Margin" Value="0 1.5 0 0"/>
     </Style>

@@ -11,8 +11,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../ToastStyling/ColorPalette.xaml" />
-                <ResourceDictionary Source="../ToastStyling/DefaultStylingDictionary.xaml" />
+                <ResourceDictionary Source="../ToastStyling/ControlsStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converters:NullToVisibilityConverter x:Key="NullToVisibility"/>
         </ResourceDictionary>
@@ -26,8 +25,8 @@
         </Grid.ColumnDefinitions>
         
         <Border Grid.Column="1"
-                Background="{StaticResource Background}" 
-                BorderBrush="{StaticResource Border}"
+                Background="{DynamicResource Background}" 
+                BorderBrush="{DynamicResource Border}"
                 BorderThickness="2"
                 CornerRadius="{StaticResource CornerRadiusValue}"
                 Padding="15 10 20 10"

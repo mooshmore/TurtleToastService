@@ -114,7 +114,7 @@ namespace TurtleToastService.Service.Views.Loading
 
         /// <summary>
         /// Increments the progress value.
-        /// Todo: Add a ability to increment the progress by a specific value using the arument
+        /// Todo: Add a ability to increment the progress by a specific value using the argument
         /// </summary>
         public void IncrementProgress(object obj, EventArgs args) => IncrementProgress(1);
 

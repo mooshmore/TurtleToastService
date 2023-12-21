@@ -1,6 +1,7 @@
 ﻿using System;
 using TurtleToastSerice.Service;
 using TurtleToastService.Service.Core;
+using TurtleToastService.Service.ToastStyling;
 using TurtleToastService.Service.Views.Loading;
 using Utilities.WPF.Bases;
 
@@ -25,6 +26,7 @@ namespace TurtleToastService.DemoApp
         public RelayCommand EndLoadingCommand { get; }
         public RelayCommand ClearAllToastsCommand { get; } = new RelayCommand(TurtleToast.ClearAll);
         public RelayCommand ClearUpcomingToastsCommand { get; } = new RelayCommand(TurtleToast.ClearUpcoming);
+        public RelayCommand ChangeThemeCommand { get; } = new RelayCommand(ChangeTheme);
 
         private static void InformationToast(object toastPriority)
         {
@@ -70,6 +72,8 @@ namespace TurtleToastService.DemoApp
         {
             _completeToast = TurtleToast.Loading("Loading infinite", "This can take a while", progressEvent: ref LoadingEvent, displayMode: ProgressDisplayMode.Count);
         }
+
+        public static void ChangeTheme(object theme) => TurtleToast.ChangeTheme((ToastTheme)theme);
 
         private EventHandler _completeToast;
     }

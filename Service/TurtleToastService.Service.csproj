@@ -12,10 +12,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="ToastStyling\Themes\Dark.xaml" />
+    <Page Remove="ToastStyling\Themes\Light.xaml" />
+    <Page Remove="ToastStyling\Themes\StoneGrey.xaml" />
+    <Page Remove="ToastStyling\Themes\TurtleGreen.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ToastStyling\Themes\Dark.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="ToastStyling\Themes\Light.xaml" />
+    <Resource Include="ToastStyling\Themes\TurtleGreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="ToastStyling\Themes\StoneGrey.xaml" />
     <Resource Include="Views\Loading\loadingCircle.png" />
   </ItemGroup>
 

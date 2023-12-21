@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TurtleToastService.DemoApp"
         xmlns:TurtleToast="clr-namespace:TurtleToastService.Service.ToastHost;assembly=TurtleToastService.Service"
         xmlns:TurtleToastService="clr-namespace:TurtleToastService.Service.Core;assembly=TurtleToastService.Service"
+        xmlns:ThemeManager="clr-namespace:TurtleToastService.Service.ToastStyling;assembly=TurtleToastService.Service"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
@@ -45,8 +46,15 @@
                 <Button Command="{Binding ClearUpcomingToastsCommand}" Content="Clear upcoming toasts"/>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.Light}" Content="Light theme"/>
+                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.Dark}" Content="Dark theme"/>
+                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.StoneGrey}" Content="Stone grey theme"/>
+                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.TurtleGreen}" Content="Turtle green theme"/>
+            </StackPanel>
+
         </StackPanel>
         
-        <TurtleToast:ToastHostView Margin="0 0 0 30"/>
+        <TurtleToast:ToastHostView Margin="0 0 0 30" Theme="StoneGrey"/>
     </Grid>
 </Window>

@@ -13,8 +13,6 @@
         <ResourceDictionary>
             <converters:NullToVisibilityConverter x:Key="NullToVisibility"/>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../ToastStyling/DefaultStylingDictionary.xaml"/>
-                <ResourceDictionary Source="../../ToastStyling/ColorPalette.xaml"/>
                 <ResourceDictionary Source="../../ToastStyling/ControlsStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

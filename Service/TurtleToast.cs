@@ -1,5 +1,6 @@
 ﻿using System;
 using TurtleToastService.Service.Core;
+using TurtleToastService.Service.ToastStyling;
 using TurtleToastService.Service.Views.Confirmation;
 using TurtleToastService.Service.Views.Information;
 using TurtleToastService.Service.Views.Loading;
@@ -29,6 +30,17 @@ namespace TurtleToastSerice.Service
         /// Clears all toats.
         /// </summary>
         public static void ClearAll() => _service.ClearAll();
+
+        /// <summary>
+        /// Changes the used theme of the service.
+        /// </summary>
+        /// <param name="theme">The theme to change to. See <see cref="ToastTheme"/> for the list of avaialable themes.</param>
+        public static void ChangeTheme(ToastTheme theme) => ThemeManager.ChangeTheme(theme);
+
+        /// <summary>
+        /// The theme currently used by the service.
+        /// </summary>
+        public static ToastTheme CurrentTheme => ThemeManager.ActiveTheme;
 
         #endregion
 
