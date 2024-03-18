@@ -31,29 +31,32 @@ namespace TurtleToastService.Service.Core
         /// </summary>
         public void EnqueueToast(IToast toast)
         {
-            if (_toastQueue.Count != 0)
+            lock (_toastQueue)
             {
-                Priority currentToastPriority = _toastQueue.Peek().Priority;
+                if (_toastQueue.Count != 0)
+                {
+                    Priority currentToastPriority = _toastQueue.Peek().Priority;
 
-                // Priority is lower than current toast - don't display the toast at all
-                if (toast.Priority < currentToastPriority)
-                {
-                    return;
+                    // Priority is lower than current toast - don't display the toast at all
+                    if (toast.Priority < currentToastPriority)
+                    {
+                        return;
+                    }
+                    // Priority is higher than current toast - clear queue and display the toast instantly
+                    else if (toast.Priority > currentToastPriority)
+                    {
+                        ClearAll();
+                    }
+                    // Put the toast in the queue without doing anything if the toasts priority is the same as the current toasts priority.
                 }
-                // Priority is higher than current toast - clear queue and display the toast instantly
-                else if (toast.Priority > currentToastPriority)
-                {
-                    ClearAll();
-                }
-                // Put the toast in the queue without doing anything if the toasts priority is the same as the current toasts priority.
+
+                _toastQueue.Enqueue(toast);
+
+                // If the added toast is the only toast in the queue, 
+                // start it straight away
+                if (_toastQueue.Count == 1)
+                    DisplayNextToast();
             }
-
-            _toastQueue.Enqueue(toast);
-
-            // If the added toast is the only toast in the queue, 
-            // start it straight away
-            if (_toastQueue.Count == 1)
-                DisplayNextToast();
         }
 
         /// <summary>
@@ -86,9 +89,12 @@ namespace TurtleToastService.Service.Core
         /// </summary>
         public void ClearAllUpcoming()
         {
-            var toast = _toastQueue.Dequeue();
-            _toastQueue.Clear();
-            _toastQueue.Enqueue(toast);
+            if (_toastQueue.Count > 0)
+            {
+                var toast = _toastQueue.Dequeue();
+                _toastQueue.Clear();
+                _toastQueue.Enqueue(toast);
+            }
         }
 
         /// <summary>
