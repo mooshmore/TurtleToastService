@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Timers;
-using Utilities.WPF.Bases;
+using CrossUtilites.WPF.Bases;
 using TurtleToastService.Service.Core;
+using CrossUtilites.WPF.Bases;
 
 namespace TurtleToastService.Service.Views.Loading
 {

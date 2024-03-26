@@ -1,15 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Service\TurtleToastService.Service.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Reference Include="CrossUtilities">
+      <HintPath>..\..\CrossUtilites\CrossUtilities\bin\Debug\net8.0\CrossUtilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

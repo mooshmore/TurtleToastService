@@ -1,31 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Views\Loading\loadingCircle.png" />
   </ItemGroup>
-
   <ItemGroup>
     <Page Remove="ToastStyling\Themes\Dark.xaml" />
     <Page Remove="ToastStyling\Themes\Light.xaml" />
     <Page Remove="ToastStyling\Themes\StoneGrey.xaml" />
     <Page Remove="ToastStyling\Themes\TurtleGreen.xaml" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="ToastStyling\Themes\Dark.xaml" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Reference Include="CrossUtilities">
+      <HintPath>..\..\CrossUtilites\CrossUtilities\bin\Debug\net8.0\CrossUtilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="ToastStyling\Themes\Light.xaml" />
     <Resource Include="ToastStyling\Themes\TurtleGreen.xaml">
@@ -35,5 +34,4 @@
     <Resource Include="ToastStyling\Themes\StoneGrey.xaml" />
     <Resource Include="Views\Loading\loadingCircle.png" />
   </ItemGroup>
-
 </Project>

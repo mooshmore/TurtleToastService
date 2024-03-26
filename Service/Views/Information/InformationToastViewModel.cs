@@ -7,19 +7,13 @@ namespace TurtleToastService.Service.Views.Information
     /// <summary>
     /// A toast message used to display simple information.
     /// </summary>
-    public class InformationToastViewModel : IToast, IDisposable
+    /// <remarks>
+    /// Creates a toast message used to display simple information.
+    /// </remarks>
+    /// <param name="message">The message to display.</param>
+    /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
+    public class InformationToastViewModel(string message, Priority priority) : IToast, IDisposable
     {
-        /// <summary>
-        /// Creates a toast message used to display simple information.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
-        public InformationToastViewModel(string message, Priority priority)
-        {
-            Message = message;
-            Priority = priority;
-        }
-
         /// <summary>
         /// A toast message used to display simple information.
         /// </summary>
@@ -32,11 +26,11 @@ namespace TurtleToastService.Service.Views.Information
         }
 
         /// <inheritdoc/>
-        public string Message { get; set; }
+        public string Message { get; set; } = message;
         /// <inheritdoc/>
         public string SecondaryMessage { get; set; }
         /// <inheritdoc/>
-        public Priority Priority { get; set; }
+        public Priority Priority { get; set; } = priority;
         /// <inheritdoc/>
         public EventHandler Completed { get; set; }
 

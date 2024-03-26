@@ -3,7 +3,7 @@ using TurtleToastSerice.Service;
 using TurtleToastService.Service.Core;
 using TurtleToastService.Service.ToastStyling;
 using TurtleToastService.Service.Views.Loading;
-using Utilities.WPF.Bases;
+using CrossUtilites.WPF.Bases;
 
 namespace TurtleToastService.DemoApp
 {
@@ -68,7 +68,7 @@ namespace TurtleToastService.DemoApp
             }
         }
 
-        private int _loadingMaxCount = 5;
+        private readonly int _loadingMaxCount = 5;
 
         public event EventHandler LoadingEvent;
 
