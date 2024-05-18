@@ -1,5 +1,4 @@
-﻿using System;
-using TurtleToastService.Service.Core;
+﻿using TurtleToastService.Service.Core;
 using TurtleToastService.Service.ToastStyling;
 using TurtleToastService.Service.Views.Confirmation;
 using TurtleToastService.Service.Views.Information;
@@ -107,27 +106,23 @@ namespace TurtleToastSerice.Service
         /// </summary>
         /// <param name="message">The message to display.</param>
         /// <param name="totalOperationsCount">The total count of operations that will be performed.</param>
-        /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
         /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
         /// <param name="succesMessage">The message that will be displayed after the loading process ends. Set to null if no succes message should be displayed.</param>
         /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
         /// <returns>The completed event that can be used to manually end the message.</returns>
-        public static EventHandler Loading(string message, int totalOperationsCount, ref EventHandler progressEvent, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
+        public static ILoadingToast Loading(string message, int totalOperationsCount, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
         {
             var toast = new LoadingToastViewModel(
                    message: message,
                    totalOperationsCount: totalOperationsCount,
-                   progressEvent: progressEvent,
                    displayMode: displayMode,
                    succesMessage: succesMessage,
                    priority: priority
                    );
 
-            new LoadingToastEventsHandler(toast, ref progressEvent);
-
             _service.EnqueueToast(toast);
 
-            return toast.Completed;
+            return toast;
         }
 
         /// <summary>
@@ -135,27 +130,23 @@ namespace TurtleToastSerice.Service
         /// </summary>
         /// <param name="message">The message to display.</param>
         /// <param name="secondaryMessage">The secondary message to display.</param>
-        /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
         /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
         /// <param name="succesMessage">The message that will be displayed after the loading process ends. Set to null if no succes message should be displayed.</param>
         /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
         /// <returns>The completed event that can be used to manually end the message.</returns>
-        public static EventHandler Loading(string message, string secondaryMessage, ref EventHandler progressEvent, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
+        public static ILoadingToast Loading(string message, string secondaryMessage, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
         {
             var toast = new LoadingToastViewModel(
                    message: message,
                    secondaryMessage: secondaryMessage,
-                   progressEvent: progressEvent,
                    displayMode: displayMode,
                    succesMessage: succesMessage,
                    priority: priority
                    );
 
-            new LoadingToastEventsHandler(toast, ref progressEvent);
-
             _service.EnqueueToast(toast);
 
-            return toast.Completed;
+            return toast;
         }
 
         /// <summary>
@@ -164,28 +155,24 @@ namespace TurtleToastSerice.Service
         /// <param name="message">The message to display.</param>
         /// <param name="secondaryMessage">The secondary message to display.</param>
         /// <param name="totalOperationsCount">The total count of operations that will be performed.</param>
-        /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
         /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
         /// <param name="succesMessage">The message that will be displayed after the loading process ends. Set to null if no succes message should be displayed.</param>
         /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
         /// <returns>The completed event that can be used to manually end the message.</returns>
-        public static EventHandler Loading(string message, string secondaryMessage, int totalOperationsCount, ref EventHandler progressEvent, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
+        public static ILoadingToast Loading(string message, string secondaryMessage, int totalOperationsCount, ProgressDisplayMode displayMode = ProgressDisplayMode.None, string succesMessage = "Done!", Priority priority = Priority.Medium)
         {
             var toast = new LoadingToastViewModel(
                    message: message,
                    secondaryMessage: secondaryMessage,
                    totalOperationsCount: totalOperationsCount,
-                   progressEvent: progressEvent,
                    displayMode: displayMode,
                    succesMessage: succesMessage,
                    priority: priority
                    );
 
-            new LoadingToastEventsHandler(toast, ref progressEvent);
-
             _service.EnqueueToast(toast);
 
-            return toast.Completed;
+            return toast;
         }
 
         #endregion

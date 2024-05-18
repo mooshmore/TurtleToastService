@@ -1,5 +1,5 @@
 ﻿using TurtleToastService.Service.Core;
-using Utilities.WPF.Bases;
+using CrossUtilitesWPF.Bases;
 
 namespace TurtleToastService.Service.ToastHost
 {

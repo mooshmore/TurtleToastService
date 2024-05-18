@@ -1,6 +1,6 @@
 ﻿using System;
 using TurtleToastService.Service.Core;
-using Utilities.WPF.Bases;
+using CrossUtilitesWPF.Bases;
 
 namespace TurtleToastService.Service.Views.Confirmation
 {
@@ -18,7 +18,7 @@ namespace TurtleToastService.Service.Views.Confirmation
         {
             Message = message;
             Priority = priority;
-            AcceptToastCommand = new RelayCommand(() => Completed?.Invoke(null, null));
+            AcceptToastCommand = new RelayCommand(() => Completed.Invoke(null, null));
         }
 
         /// <summary>

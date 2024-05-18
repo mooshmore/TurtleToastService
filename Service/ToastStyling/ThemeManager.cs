@@ -14,7 +14,7 @@ namespace TurtleToastService.Service.ToastStyling
         /// <param name="theme">The theme to change to. See <see cref="ToastTheme"/> for the list of avaialable themes.</param>
         public static void ChangeTheme(ToastTheme theme)
         {
-            Uri uri = new Uri($"/TurtleToastService.Service;component/ToastStyling/Themes/{theme}.xaml", UriKind.Relative);
+            Uri uri = new($"/TurtleToastService.Service;component/ToastStyling/Themes/{theme}.xaml", UriKind.Relative);
             var themeDictionary = new ResourceDictionary() { Source = uri };
             ActiveTheme = theme;
             ThemeChanged.Invoke(null, themeDictionary);

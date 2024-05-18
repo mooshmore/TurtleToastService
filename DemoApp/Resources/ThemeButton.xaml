@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="TurtleToastService.DemoApp.Resources.ThemeButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TurtleToastService.DemoApp.Resources"
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:WPFBehaviors="clr-namespace:CrossUtilitesWPF.Behaviors;assembly=CrossUtilitiesWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance local:ThemeButton}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ThemeButtonDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource ThemeButton}">
+        <Grid.InputBindings>
+            <MouseBinding 
+                Gesture="LeftClick" 
+                Command="{Binding ButtonCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CommandParameter="{Binding ButtonCommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </Grid.InputBindings>
+
+        <Popup Style="{StaticResource ThemeNamePopup}">
+            <Grid>
+                <Border Style="{StaticResource ThemeNameBorder}">
+                    <TextBlock Style="{StaticResource ThemeName}" Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                </Border>
+            </Grid>
+
+            <behaviors:Interaction.Behaviors>
+                <WPFBehaviors:AutoRepositionPopup/>
+            </behaviors:Interaction.Behaviors>
+        </Popup>
+
+        <Ellipse Style="{StaticResource ThemeCircle}" Stroke="{Binding ButtonBrush, RelativeSource={RelativeSource AncestorType=UserControl}}" Fill="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        <TextBlock Style="{StaticResource ThemeText}" Foreground="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+
+    </Grid>
+
+</UserControl>
