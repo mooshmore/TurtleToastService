@@ -7,11 +7,22 @@
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Images\paintBrush.png" />
+    <None Remove="Images\turtleToastIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Service\TurtleToastService.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CrossUtilities">
       <HintPath>..\..\CrossUtilites\CrossUtilities\bin\Debug\net8.0\CrossUtilities.dll</HintPath>
     </Reference>
+    <Reference Include="CrossUtilitiesWPF">
+      <HintPath>..\..\CrossUtilites\CrossUtilitiesWPF\bin\Debug\net8.0-windows\CrossUtilitiesWPF.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\paintBrush.png" />
+    <Resource Include="Images\turtleToastIcon.png" />
   </ItemGroup>
 </Project>

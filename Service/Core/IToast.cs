@@ -25,7 +25,7 @@ namespace TurtleToastService.Service.Core
         /// <summary>
         /// A event that is raised when the toast completes it's display.
         /// </summary>
-        EventHandler? Completed { get; set; }
+        EventHandler Completed { get; set; }
 
         /// <summary>
         /// Starts the timers or other processes on the toast message, if there are any.

@@ -1,23 +1,24 @@
-﻿using System;
+﻿using CrossUtilitesWPF.Bases;
+using System;
 using System.Timers;
-using CrossUtilites.WPF.Bases;
 using TurtleToastService.Service.Core;
-using CrossUtilites.WPF.Bases;
 
 namespace TurtleToastService.Service.Views.Loading
 {
     /// <summary>
-    /// A toast message sed to display a progress of an action.
+    /// A toast message used to display a progress of an action.
     /// </summary>
-    public class LoadingToastViewModel : ViewModelBase, IToast
+    public class LoadingToastViewModel : ViewModelBase, ILoadingToast, IToast
     {
         /// <summary>
         /// Creates a toast message used to display a progress of an action.
         /// </summary>
+        /// <remarks>
+        /// Remember to correctly unsubscribe using <see cref="Completed"/> when attaching to IncrementProgress method.
+        /// </remarks>
         /// <param name="message">The message to display.</param>
         /// <param name="secondaryMessage">The secondary message to display.</param>
         /// <param name="totalOperationsCount">The total count of operations that will be performed.</param>
-        /// <param name="progressEvent">The event which invocation will increment the progress value.</param>
         /// <param name="displayMode">The format in which the progress will be displayed. See <see cref="ProgressDisplayMode"/> for more information.</param>
         /// <param name="succesMessage">The message that will be displayed after the loading process ends. If not defined, the succes message won't display at all.</param>
         /// <param name="priority">The priority of the message. See <see cref="Priority"/> for more information.</param>
@@ -25,7 +26,6 @@ namespace TurtleToastService.Service.Views.Loading
             string message,
             string? secondaryMessage = null,
             int totalOperationsCount = -1,
-            EventHandler? progressEvent = null,
             ProgressDisplayMode displayMode = ProgressDisplayMode.Percentage,
             string? succesMessage = null,
             Priority priority = Priority.Medium)
@@ -35,11 +35,9 @@ namespace TurtleToastService.Service.Views.Loading
             Priority = priority;
             TotalOperationsCount = totalOperationsCount;
             _displayMode = displayMode;
-            _progressEvent = progressEvent;
             _succesMessage = succesMessage;
 
             GenerateMessage();
-            _progressEvent += IncrementProgress;
         }
 
         private string _message;
@@ -67,8 +65,10 @@ namespace TurtleToastService.Service.Views.Loading
                 RaisePropertyChanged();
             }
         }
+
         /// <inheritdoc/>
         public Priority Priority { get; set; }
+
         /// <inheritdoc/>
         public EventHandler? Completed { get; set; }
 
@@ -82,9 +82,15 @@ namespace TurtleToastService.Service.Views.Loading
         private readonly string _prefixMessage;
         private readonly string? _succesMessage;
         private Timer _timer;
-        private EventHandler? _progressEvent;
 
         private bool _displayLoadingIcon = true;
+
+        private bool _loadingFinalized = false;
+
+        /// <summary>
+        /// Whether the toast is being displayed or not.
+        /// </summary>
+        private bool _isDisplaying;
 
         /// <summary>
         /// Whether the loading icon should be displayed or not.
@@ -99,42 +105,53 @@ namespace TurtleToastService.Service.Views.Loading
             }
         }
 
-        /// <summary>
-        /// Increments the progress value.
-        /// </summary>
-        /// <param name="incrementValue">The value to increment by.</param>
+        /// <inheritdoc/>
         public void IncrementProgress(int incrementValue = 1)
         {
+            if (!_isDisplaying)
+                return;
+
             _count += incrementValue;
 
             if (TotalOperationsCount > _count || TotalOperationsCount == -1)
                 GenerateMessage();
             else
-                FinalizeToast();
+                FinishToast();
         }
 
-        /// <summary>
-        /// Increments the progress value.
-        /// Todo: Add a ability to increment the progress by a specific value using the argument
-        /// </summary>
-        public void IncrementProgress(object obj, EventArgs args) => IncrementProgress(1);
+        /// <inheritdoc/>
+        public void IncrementProgress(object sender, EventArgs args) => IncrementProgress(1);
 
-        /// <summary>
-        /// Displays the succes message if one was defined and invokes the <see cref="Completed"/> event.
-        /// </summary>
-        private void FinalizeToast()
+        /// <inheritdoc/>
+        public void IncrementProgress(object sender, int incrementValue) => IncrementProgress(incrementValue);
+
+        /// <inheritdoc/>
+        public void FinishToast(bool displaySuccesMessage = true)
         {
-            if (_succesMessage != null)
-            {
-                DisplayLoadingIcon = false;
-                Message = _succesMessage;
-                SecondaryMessage = null;
-
-                _timer = ToastHelpers.CreateTimer(Completed, Message);
-                _timer.Start();
-            }
+            if (!_isDisplaying)
+                return;
+            else if (_succesMessage != null && displaySuccesMessage)
+                DisplaySuccesMessage();
             else
-                Completed?.Invoke(null, null);
+                Completed.Invoke(null, null);
+
+            _isDisplaying = false;
+        }
+
+        /// <inheritdoc/>
+        public void FinishToast(object sender, EventArgs args) => FinishToast(true);
+
+        /// <inheritdoc/>
+        public void FinishToast(object sender, bool displaySuccesMessage) => FinishToast(displaySuccesMessage);
+
+        private void DisplaySuccesMessage()
+        {
+            DisplayLoadingIcon = false;
+            Message = _succesMessage;
+            SecondaryMessage = null;
+
+            _timer = ToastHelpers.CreateTimer(Completed, Message);
+            _timer.Start();
         }
 
 
@@ -170,7 +187,10 @@ namespace TurtleToastService.Service.Views.Loading
         }
 
         /// <inheritdoc/>
-        public void Display() { }
+        public void Display() 
+        { 
+            _isDisplaying = true;
+        }
 
         /// <summary>
         /// Disposes any timers and subscriptions assigned to event handlers.
@@ -178,7 +198,6 @@ namespace TurtleToastService.Service.Views.Loading
         public void Dispose()
         {
             _timer?.Dispose();
-            _progressEvent -= IncrementProgress;
         }
     }
 }

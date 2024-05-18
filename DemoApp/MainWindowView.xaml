@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurtleToastService.DemoApp"
+        xmlns:resources="clr-namespace:TurtleToastService.DemoApp.Resources"
         xmlns:TurtleToast="clr-namespace:TurtleToastService.Service.ToastHost;assembly=TurtleToastService.Service"
         xmlns:TurtleToastService="clr-namespace:TurtleToastService.Service.Core;assembly=TurtleToastService.Service"
         xmlns:ThemeManager="clr-namespace:TurtleToastService.Service.ToastStyling;assembly=TurtleToastService.Service"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="650" Width="1000"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}">
 
     <Window.Resources>
@@ -19,42 +20,128 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Low}" Content="Information low"/>
-                <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Medium}" Content="Information medium"/>
-                <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.High}" Content="Information high"/>
-            </StackPanel>
+        <DockPanel>
+            <!--Navigation menu-->
+            <Border Style="{StaticResource NavigationMenuBorder}" DockPanel.Dock="Left">
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                        <Image Source="/Images/turtleToastIcon.png" Style="{StaticResource AppIcon}"/>
+                    </StackPanel>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Low}" Content="Confirmation low"/>
-                <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Medium}" Content="Confirmation medium"/>
-                <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.High}" Content="Confirmation high"/>
-            </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom" Grid.Column="0" Grid.RowSpan="2">
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Command="{Binding LoadingCountCommand}" Content="Loading counted"/>
-                <Button Command="{Binding LoadingInfiniteCommand}" Content="Loading infinite"/>
-                <Button Command="{Binding IncreaseCountCommand}" Content="Increase count loading"/>
-                <Button Command="{Binding EndLoadingCommand}" Content="End loading"/>
-            </StackPanel>
+                        <resources:ThemeButton ButtonText="Light theme" 
+                                           ButtonBackground="#FFFFFF" 
+                                           ButtonBrush="#E5E3E3" 
+                                           ButtonForeground="#000000"
+                                           ButtonCommand="{Binding ChangeThemeCommand}"
+                                           ButtonCommandParameter="{x:Static ThemeManager:ToastTheme.Light}"/>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Command="{Binding ClearAllToastsCommand}" Content="Clear all toasts"/>
-                <Button Command="{Binding ClearUpcomingToastsCommand}" Content="Clear upcoming toasts"/>
-            </StackPanel>
+                        <resources:ThemeButton ButtonText="Dark theme" 
+                                           ButtonBackground="#3C3B3B" 
+                                           ButtonBrush="#656565" 
+                                           ButtonForeground="#FFFFFF"
+                                           ButtonCommand="{Binding ChangeThemeCommand}"
+                                           ButtonCommandParameter="{x:Static ThemeManager:ToastTheme.Dark}"/>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.Light}" Content="Light theme"/>
-                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.Dark}" Content="Dark theme"/>
-                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.StoneGrey}" Content="Stone grey theme"/>
-                <Button Command="{Binding ChangeThemeCommand}" CommandParameter="{x:Static ThemeManager:ToastTheme.TurtleGreen}" Content="Turtle green theme"/>
-            </StackPanel>
+                        <resources:ThemeButton ButtonText="Stone grey theme" 
+                                           ButtonBackground="#e1e1e1" 
+                                           ButtonBrush="#ababab" 
+                                           ButtonForeground="#000000"
+                                           ButtonCommand="{Binding ChangeThemeCommand}"
+                                           ButtonCommandParameter="{x:Static ThemeManager:ToastTheme.StoneGrey}"/>
 
-        </StackPanel>
-        
-        <TurtleToast:ToastHostView Margin="0 0 0 30" Theme="StoneGrey"/>
+                        <resources:ThemeButton ButtonText="Turtle green theme" 
+                                           ButtonBackground="#57CE6A" 
+                                           ButtonBrush="#009B8E" 
+                                           ButtonForeground="#3E3E3E"
+                                           ButtonCommand="{Binding ChangeThemeCommand}"
+                                           ButtonCommandParameter="{x:Static ThemeManager:ToastTheme.TurtleGreen}"/>
+
+                        <Image Source="/Images/paintBrush.png" Margin="0 5 0 10" Width="30" Opacity="0.3"/>
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+            <!--App title-->
+            <Border DockPanel.Dock="Top" Style="{StaticResource AppTitleBorder}">
+
+                <Grid>
+                    <TextBlock Margin="12 14 14 14">           
+                        <Hyperlink NavigateUri="https://github.com/mooshmore/TurtleToastService" TextDecorations="None">
+                            <TextBlock>
+                                <TextBlock Style="{StaticResource AppTitle}" Text="Turtle toast"/>
+                                <TextBlock Style="{StaticResource AppCreator}" Text="by mooshmore"/>
+                            
+                            </TextBlock>
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Command="{Binding ClearAllToastsCommand}" Content="Clear all toasts"/>
+                        <Button Command="{Binding ClearUpcomingToastsCommand}" Content="Clear upcoming toasts" Margin="5 5 10 5"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--Toast messages control-->
+            <Grid Background="#55c0ff" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="3000"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Information-->
+                <StackPanel Style="{StaticResource GridPanel}" Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Style="{StaticResource ToastType}">Information</TextBlock>
+                    <TextBlock Style="{StaticResource ToastDescription}">Hides after time calculated off the length of the text.</TextBlock>
+                </StackPanel>
+                <StackPanel Style="{StaticResource GridPanel}" Grid.Row="0" Grid.Column="1">
+                    <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Low}" Content="Low" Margin="10 7 6 7"/>
+                    <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Medium}" Content="Medium"/>
+                    <Button Command="{Binding InformationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.High}" Content="High"/>
+                </StackPanel>
+
+                <!--Confirmation-->
+                <StackPanel Style="{StaticResource GridPanel}" Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Style="{StaticResource ToastType}">Confirmation</TextBlock>
+                    <TextBlock Style="{StaticResource ToastDescription}" DockPanel.Dock="Bottom">Hides after the button is clicked.</TextBlock>
+                </StackPanel>
+                <StackPanel Style="{StaticResource GridPanel}" Grid.Row="1" Grid.Column="1">
+                    <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Low}" Content="Low" Margin="10 7 6 7"/>
+                    <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.Medium}" Content="Medium"/>
+                    <Button Command="{Binding ConfirmationToastCommand}" CommandParameter="{x:Static TurtleToastService:Priority.High}" Content="High"/>
+                </StackPanel>
+
+                <!--Loading-->
+                <StackPanel Style="{StaticResource GridPanel}" Grid.Row="2" Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Style="{StaticResource ToastType}">Loading</TextBlock>
+                    <TextBlock Style="{StaticResource ToastDescription}">Shows the progress with multiple display options. Can increment automatically when attached to an event.</TextBlock>
+                </StackPanel>
+                <StackPanel Style="{StaticResource GridPanel}" Grid.Row="2" Grid.Column="1">
+                    <Button Command="{Binding LoadingCountCommand}" Content="Counted" Margin="10 7 6 7"/>
+                    <Button Command="{Binding LoadingInfiniteCommand}" Content="Infinite"/>
+                    <Button Command="{Binding IncreaseCountOneCommand}" Content="Increase count by 1" Margin="14 7 6 7"/>
+                    <Button Command="{Binding IncreaseCountFiveCommand}" Content="Increase count by 5"/>
+                    <Button Command="{Binding EndLoadingCommand}" Content="End loading" Margin="14 7 6 7"/>
+
+                </StackPanel>
+
+            </Grid>
+        </DockPanel>
+
+        <TurtleToast:ToastHostView Margin="0 0 0 30" Theme="StoneGrey" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
     </Grid>
+
 </Window>

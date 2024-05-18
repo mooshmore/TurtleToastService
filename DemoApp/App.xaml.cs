@@ -1,4 +1,4 @@
-﻿using CrossUtilites.WPF.Utilities;
+﻿using CrossUtilitiesWPF.MiscUtilities;
 using System.Windows;
 
 namespace TurtleToastService.DemoApp
@@ -14,6 +14,8 @@ namespace TurtleToastService.DemoApp
 
             // Assign viewModels to views
             DataTemplateManager.LoadDataTemplatesByConvention();
+
+            MiscWPFUtilities.SetAutoLinkOpening();
         }
     }
 }

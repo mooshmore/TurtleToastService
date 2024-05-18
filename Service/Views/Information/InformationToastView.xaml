@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TurtleToastService.Service.Views.Information"
-             xmlns:controls="clr-namespace:CrossUtilites.WPF.Controls;assembly=CrossUtilities"
-             xmlns:converters="clr-namespace:CrossUtilites.WPF.Converters;assembly=CrossUtilities"
+             xmlns:controls="clr-namespace:CrossUtilitesWPF.Controls;assembly=CrossUtilitiesWPF"
+             xmlns:converters="clr-namespace:CrossUtilitesWPF.Converters;assembly=CrossUtilitiesWPF"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type=local:InformationToastViewModel}">

@@ -1,7 +1,7 @@
 ﻿using TurtleToastService.Service.ToastHost;
 using System;
 using System.Collections.Generic;
-using CrossUtilites.WPF.Utilities;
+using CrossUtilitiesWPF.MiscUtilities;
 
 namespace TurtleToastService.Service.Core
 {
