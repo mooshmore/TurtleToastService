@@ -2,7 +2,6 @@
 
 # TurtleToastService
 A straightforward C#/WPF service for displaying toast messages!
-<br>
 
 ```cs
 TurtleToast.Information("Turtle toast!");
