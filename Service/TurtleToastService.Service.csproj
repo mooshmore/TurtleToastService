@@ -4,6 +4,17 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <Title>TurtleToastService</Title>
+    <Authors>mooshmore</Authors>
+    <Company />
+    <PackageProjectUrl></PackageProjectUrl>
+    <Copyright></Copyright>
+    <RepositoryUrl>https://github.com/mooshmore/TurtleToastService</RepositoryUrl>
+    <PackageTags>ToastMessage;Toast;WPF;C#</PackageTags>
+    <Description>A straightforward C#/WPF service for displaying toast messages!</Description>
+    <PackageReadmeFile></PackageReadmeFile>
+    <PackageId>TurtleToastService.Service</PackageId>
+    <Version>1.0.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Views\Loading\loadingCircle.png" />
