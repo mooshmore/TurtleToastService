@@ -1,5 +1,7 @@
 ![Service logo](https://i.imgur.com/pIfQKJU.png)
 
+![NuGet Version](https://img.shields.io/nuget/v/TurtleToastService.Service)
+
 # TurtleToastService
 A straightforward C#/WPF service for displaying toast messages!
 
