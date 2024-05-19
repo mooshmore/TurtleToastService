@@ -36,6 +36,6 @@ TurtleToast.Information("Turtle toast!");
     ![Loading toast](https://i.imgur.com/hSIOoW3.png)
     
     ```cs
-    TurtleToast.Loading("Loading toast", "This can take a while", maxLoadingCount, progressEvent: ref LoadingEvent, displayMode: ProgressDisplayMode.CountAndPercentage);
+    TurtleToast.Loading("Loading toast", "This can take a while", 5, displayMode: ProgressDisplayMode.CountAndPercentage);
     ```
     Shows the progress with multiple display options. Can increment automatically when attached to an event.
