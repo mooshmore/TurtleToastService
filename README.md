@@ -7,7 +7,7 @@ A straightforward C#/WPF service for displaying toast messages!
 ```cs
 TurtleToast.Information("Turtle toast!");
 ```
-![Toast example](https://i.imgur.com/BWvAkhm.png)
+![Toast message example](https://i.imgur.com/M54Ki9O.png)
 
 ---
 ### Key features
