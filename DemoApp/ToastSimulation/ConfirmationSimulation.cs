@@ -1,4 +1,4 @@
-﻿using TurtleToastSerice.Service;
+﻿using TurtleToastService.Service;
 using TurtleToastService.Service.Core;
 
 namespace TurtleToastService.DemoApp.ToastSimulation

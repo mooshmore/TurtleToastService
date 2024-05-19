@@ -1,6 +1,6 @@
 ﻿using CrossUtilitesWPF.Bases;
 using System;
-using TurtleToastSerice.Service;
+using TurtleToastService.Service;
 using TurtleToastService.Service.Views.Loading;
 
 namespace TurtleToastService.DemoApp.ToastSimulation

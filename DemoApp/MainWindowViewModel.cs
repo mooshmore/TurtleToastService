@@ -1,5 +1,5 @@
 ﻿using CrossUtilitesWPF.Bases;
-using TurtleToastSerice.Service;
+using TurtleToastService.Service;
 using TurtleToastService.DemoApp.ToastSimulation;
 
 namespace TurtleToastService.DemoApp

@@ -4,7 +4,7 @@ using TurtleToastService.Service.Views.Confirmation;
 using TurtleToastService.Service.Views.Information;
 using TurtleToastService.Service.Views.Loading;
 
-namespace TurtleToastSerice.Service
+namespace TurtleToastService.Service
 {
     /// <summary>
     /// A collection of methods for use with IToastService.
