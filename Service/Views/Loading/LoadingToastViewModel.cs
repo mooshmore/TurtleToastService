@@ -8,7 +8,7 @@ namespace TurtleToastService.Service.Views.Loading
     /// <summary>
     /// A toast message used to display a progress of an action.
     /// </summary>
-    public class LoadingToastViewModel : ViewModelBase, ILoadingToast, IToast
+    public class LoadingToastViewModel : ViewModelBase, ILoadingToast, IToast, IDisposable
     {
         /// <summary>
         /// Creates a toast message used to display a progress of an action.
@@ -192,12 +192,25 @@ namespace TurtleToastService.Service.Views.Loading
             _isDisplaying = true;
         }
 
-        /// <summary>
-        /// Disposes any timers and subscriptions assigned to event handlers.
-        /// </summary>
+        private bool disposed = false;
+
         public void Dispose()
         {
-            _timer?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    _timer?.Dispose();
+                }
+
+                disposed = true;
+            }
         }
     }
 }

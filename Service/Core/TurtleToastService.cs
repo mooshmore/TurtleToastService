@@ -9,7 +9,7 @@ namespace TurtleToastService.Service.Core
     /// A service implementation for displaying toast messages.
     /// Requires the <see cref="ToastHostView"/> control to be placed in a window where the messages should appear.
     /// </summary>
-    public class TurtleToastService : IToastService
+    public class TurtleToastService : IToastService, IDisposable
     {
         public TurtleToastService()
         {
@@ -111,6 +111,26 @@ namespace TurtleToastService.Service.Core
                 toast.Dispose();
 
                 _toastQueue.Clear();
+            }
+        }
+
+        private bool disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    ClearAll();
+                }
+
+                disposed = true;
             }
         }
     }

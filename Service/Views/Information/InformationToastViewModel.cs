@@ -43,12 +43,25 @@ namespace TurtleToastService.Service.Views.Information
             _timer.Start();
         }
 
-        /// <summary>
-        /// Disposes any timers and subscriptions assigned to event handlers.
-        /// </summary>
+        private bool disposed = false;
+
         public void Dispose()
         {
-            _timer?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    _timer?.Dispose();
+                }
+
+                disposed = true;
+            }
         }
     }
 }

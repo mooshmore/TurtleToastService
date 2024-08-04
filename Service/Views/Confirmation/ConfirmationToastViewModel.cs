@@ -7,7 +7,7 @@ namespace TurtleToastService.Service.Views.Confirmation
     /// <summary>
     /// A toast message used to display information which requires user confirmation.
     /// </summary>
-    public class ConfirmationToastViewModel : IToast
+    public class ConfirmationToastViewModel : IToast, IDisposable
     {
         /// <summary>
         /// Creates a toast message used to display simple information which requires user confirmation.
@@ -49,9 +49,6 @@ namespace TurtleToastService.Service.Views.Confirmation
         /// <inheritdoc/>
         public void Display() { }
 
-        /// <summary>
-        /// Disposes any timers and subscriptions assigned to event handlers.
-        /// </summary>
         public void Dispose() { }
     }
 }

@@ -14,7 +14,7 @@
 		<Description>A straightforward C#/WPF service for displaying toast messages!</Description>
 		<PackageReadmeFile></PackageReadmeFile>
 		<PackageId>TurtleToastService.Service</PackageId>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
