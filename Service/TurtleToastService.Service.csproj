@@ -14,8 +14,9 @@
 		<Description>A straightforward C#/WPF service for displaying toast messages!</Description>
 		<PackageReadmeFile></PackageReadmeFile>
 		<PackageId>TurtleToastService.Service</PackageId>
-		<Version>1.1.0</Version>
+		<Version>1.1.1</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="Views\Loading\loadingCircle.png" />
@@ -25,6 +26,9 @@
 		<Page Remove="ToastStyling\Themes\Light.xaml" />
 		<Page Remove="ToastStyling\Themes\StoneGrey.xaml" />
 		<Page Remove="ToastStyling\Themes\TurtleGreen.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="icon.png" Pack="True" PackagePath="\"/>
 	</ItemGroup>
 	<ItemGroup>
 		<Resource Include="ToastStyling\Themes\Dark.xaml" />
