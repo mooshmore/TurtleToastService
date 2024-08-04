@@ -21,6 +21,7 @@ namespace TurtleToastService.Service.ToastHost
             // Todo: Add appearing / dissapearing animations?
 
             ThemeManager.ThemeChanged += ChangeTheme;
+            ThemeManager.ChangeTheme(Theme);
         }
 
         public static readonly DependencyProperty ToastThemeProperty = DependencyProperty.Register(
