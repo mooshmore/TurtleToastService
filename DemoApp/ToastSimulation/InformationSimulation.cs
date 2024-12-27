@@ -9,9 +9,9 @@ namespace TurtleToastService.DemoApp.ToastSimulation
         /// Displays a information toast.
         /// </summary>
         /// <param name="toastPriority">The <see cref="Priority"/> of the toast.</param>
-        internal static void InformationToast(object toastPriority)
+        internal static void InformationToast(Priority toastPriority)
         {
-            switch ((Priority)toastPriority)
+            switch (toastPriority)
             {
                 case Priority.Low:
                     TurtleToast.Information("Information toast low priority", Priority.Low);

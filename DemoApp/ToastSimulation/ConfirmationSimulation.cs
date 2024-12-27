@@ -3,15 +3,15 @@ using TurtleToastService.Service.Core;
 
 namespace TurtleToastService.DemoApp.ToastSimulation
 {
-    internal class ConfirmationSimulation
+    public static partial class ConfirmationSimulation
     {
         /// <summary>
         /// Displays a confirmation toast.
         /// </summary>
         /// <param name="toastPriority">The <see cref="Priority"/> of the toast.</param>
-        internal static void ConfirmationToast(object toastPriority)
+        public static void ConfirmationToast(Priority toastPriority)
         {
-            switch ((Priority)toastPriority)
+            switch (toastPriority)
             {
                 case Priority.Low:
                     TurtleToast.Confirmation("ConfirmationToast toast low priority", Priority.Low);
