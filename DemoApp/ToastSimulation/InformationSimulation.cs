@@ -1,6 +1,6 @@
-﻿using TurtleToastService.Service.Core;
+﻿using TurtleToast.Service.Core;
 
-namespace TurtleToastService.DemoApp.ToastSimulation;
+namespace TurtleToast.DemoApp.ToastSimulation;
 
 internal static class InformationSimulation
 {
@@ -12,13 +12,13 @@ internal static class InformationSimulation
         switch (toastPriority)
         {
             case Priority.Low:
-                TurtleToastService.Service.Core.TurtleToastService.Default.Information("Information toast low priority", Priority.Low);
+                TurtleToastService.Default.Information("Information toast low priority", Priority.Low);
                 break;
             case Priority.Medium:
-                TurtleToastService.Service.Core.TurtleToastService.Default.Information("Information toast medium priority", Priority.Medium);
+                TurtleToastService.Default.Information("Information toast medium priority", Priority.Medium);
                 break;
             case Priority.High:
-                TurtleToastService.Service.Core.TurtleToastService.Default.Information("Information toast high priority", Priority.High);
+                TurtleToastService.Default.Information("Information toast high priority", Priority.High);
                 break;
         }
     }

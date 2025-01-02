@@ -1,9 +1,9 @@
 ﻿
 using CommunityToolkit.Mvvm.Input;
-using TurtleToastService.DemoApp.ToastSimulation;
-using TurtleToastService.Service.Core;
+using TurtleToast.DemoApp.ToastSimulation;
+using TurtleToast.Service.Core;
 
-namespace TurtleToastService.DemoApp.Pages.MessageControl;
+namespace TurtleToast.DemoApp.Pages.MessageControl;
 
 public class MessageControlViewModel
 {

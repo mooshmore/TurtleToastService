@@ -1,64 +1,63 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using TurtleToastService.Service.ToastStyling;
+using TurtleToast.Service.ToastStyling;
 
-namespace TurtleToastService.Service.ToastHost
+namespace TurtleToast.Service.ToastHost;
+
+/// <summary>
+/// Interaction logic for ToastHostView.xaml
+/// </summary>
+public partial class ToastHostView : UserControl
 {
     /// <summary>
-    /// Interaction logic for ToastHostView.xaml
+    /// A user control used to host toast messages.
     /// </summary>
-    public partial class ToastHostView : UserControl
+    public ToastHostView()
     {
-        /// <summary>
-        /// A user control used to host toast messages.
-        /// </summary>
-        public ToastHostView()
+        InitializeComponent();
+        this.DataContext = Core.TurtleToastService.ToastHost;
+
+        // Todo: Make it possible to edit toast properties such as border radius, border thickness, 
+        // Todo: Add appearing / dissapearing animations?
+
+        TurtleToastThemeManager.ThemeChanged += ChangeTheme;
+        TurtleToastThemeManager.ChangeTheme(Theme);
+    }
+
+    public static readonly DependencyProperty ToastThemeProperty = DependencyProperty.Register(
+        "Theme",
+        typeof(ToastTheme),
+        typeof(UserControl),
+        new PropertyMetadata(ToastTheme.Light, OnThemePropertyChanged)
+        );
+
+    /// <summary>
+    /// A property which holds the app theme.
+    /// </summary>
+    public ToastTheme Theme
+    {
+        get => (ToastTheme)GetValue(ToastThemeProperty);
+        set
         {
-            InitializeComponent();
-            this.DataContext = Core.TurtleToastService.ToastHost;
-
-            // Todo: Make it possible to edit toast properties such as border radius, border thickness, 
-            // Todo: Add appearing / dissapearing animations?
-
-            TurtleToastThemeManager.ThemeChanged += ChangeTheme;
-            TurtleToastThemeManager.ChangeTheme(Theme);
+            SetValue(ToastThemeProperty, value);
+            TurtleToastThemeManager.ChangeTheme(value);
         }
+    }
 
-        public static readonly DependencyProperty ToastThemeProperty = DependencyProperty.Register(
-            "Theme",
-            typeof(ToastTheme),
-            typeof(UserControl),
-            new PropertyMetadata(ToastTheme.Light, OnThemePropertyChanged)
-            );
+    private static void OnThemePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        TurtleToastThemeManager.ChangeTheme((ToastTheme)e.NewValue);
+    }
 
-        /// <summary>
-        /// A property which holds the app theme.
-        /// </summary>
-        public ToastTheme Theme
-        {
-            get => (ToastTheme)GetValue(ToastThemeProperty);
-            set
-            {
-                SetValue(ToastThemeProperty, value);
-                TurtleToastThemeManager.ChangeTheme(value);
-            }
-        }
-
-        private static void OnThemePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            TurtleToastThemeManager.ChangeTheme((ToastTheme)e.NewValue);
-        }
-
-        /// <summary>
-        /// Changes the theme by clearing the dicionaries and adding the theme dictionary.
-        /// </summary>
-        /// <remarks>
-        /// This method is feasible as the only dynamic properties of the app are the themes.
-        /// </remarks>
-        private void ChangeTheme(object? sender, ResourceDictionary e)
-        {
-            this.Resources.MergedDictionaries.Clear();
-            this.Resources.MergedDictionaries.Add(e);
-        }
+    /// <summary>
+    /// Changes the theme by clearing the dicionaries and adding the theme dictionary.
+    /// </summary>
+    /// <remarks>
+    /// This method is feasible as the only dynamic properties of the app are the themes.
+    /// </remarks>
+    private void ChangeTheme(object? sender, ResourceDictionary e)
+    {
+        this.Resources.MergedDictionaries.Clear();
+        this.Resources.MergedDictionaries.Add(e);
     }
 }

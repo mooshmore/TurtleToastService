@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using Wpf.Ui;
 
-namespace TurtleToastService.DemoApp.Services;
+namespace TurtleToast.DemoApp.Services;
 
 /// <summary>
 /// Service that provides pages for navigation.

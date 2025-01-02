@@ -1,20 +1,19 @@
-﻿using TurtleToastService.Service.Core;
+﻿using TurtleToast.Service.Core;
 
-namespace TurtleToastService.Service.ToastHost
+namespace TurtleToast.Service.ToastHost;
+
+/// <summary>
+/// A interface for viewModels hosting the toasts.
+/// </summary>
+public interface IToastHost
 {
     /// <summary>
-    /// A interface for viewModels hosting the toasts.
+    /// Displays the given toast message.
     /// </summary>
-    public interface IToastHost
-    {
-        /// <summary>
-        /// Displays the given toast message.
-        /// </summary>
-        void HostToast(IToast toast);
+    void HostToast(IToast toast);
 
-        /// <summary>
-        /// Vacates the given toast message.
-        /// </summary>
-        void VacateToast(IToast toast);
-    }
+    /// <summary>
+    /// Vacates the given toast message.
+    /// </summary>
+    void VacateToast(IToast toast);
 }

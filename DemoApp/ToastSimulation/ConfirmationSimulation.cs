@@ -1,6 +1,6 @@
-﻿using TurtleToastService.Service.Core;
+﻿using TurtleToast.Service.Core;
 
-namespace TurtleToastService.DemoApp.ToastSimulation;
+namespace TurtleToast.DemoApp.ToastSimulation;
 
 internal static class ConfirmationSimulation
 {
@@ -12,13 +12,13 @@ internal static class ConfirmationSimulation
         switch (toastPriority)
         {
             case Priority.Low:
-                TurtleToastService.Service.Core.TurtleToastService.Default.Confirmation("ConfirmationToast toast low priority", Priority.Low);
+                TurtleToastService.Default.Confirmation("ConfirmationToast toast low priority", Priority.Low);
                 break;
             case Priority.Medium:
-                TurtleToastService.Service.Core.TurtleToastService.Default.Confirmation("ConfirmationToast toast medium priority", Priority.Medium);
+                TurtleToastService.Default.Confirmation("ConfirmationToast toast medium priority", Priority.Medium);
                 break;
             case Priority.High:
-                TurtleToastService.Service.Core.TurtleToastService.Default.Confirmation("ConfirmationToast toast high priority", Priority.High);
+                TurtleToastService.Default.Confirmation("ConfirmationToast toast high priority", Priority.High);
                 break;
         }
     }

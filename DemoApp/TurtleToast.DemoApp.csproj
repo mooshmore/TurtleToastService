@@ -16,7 +16,7 @@
     <PackageReference Include="WPF-UI" Version="3.0.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Service\TurtleToastService.Service.csproj" />
+    <ProjectReference Include="..\Service\TurtleToast.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CrossUtilities">

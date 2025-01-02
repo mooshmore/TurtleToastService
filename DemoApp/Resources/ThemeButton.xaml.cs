@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace TurtleToastService.DemoApp.Resources
+namespace TurtleToast.DemoApp.Resources
 {
     /// <summary>
     /// Interaction logic for ThemeButton.xaml

@@ -1,6 +1,6 @@
 ﻿using Wpf.Ui.Controls;
 
-namespace TurtleToastService.DemoApp.Pages.MessageControl;
+namespace TurtleToast.DemoApp.Pages.MessageControl;
 
 public partial class MessageControlPage : INavigableView<MessageControlViewModel>
 {

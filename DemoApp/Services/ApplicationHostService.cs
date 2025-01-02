@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using TurtleToastService.DemoApp.Pages.MessageControl;
+using TurtleToast.DemoApp.Pages.MessageControl;
 using Wpf.Ui;
 
-namespace TurtleToastService.DemoApp.Services;
+namespace TurtleToast.DemoApp.Services;
 
 /// <summary>
 /// Managed host of the application.

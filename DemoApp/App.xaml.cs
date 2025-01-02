@@ -5,11 +5,11 @@ using Microsoft.Extensions.Hosting;
 using System.IO;
 using System.Reflection;
 using System.Windows;
-using TurtleToastService.DemoApp.Pages.MessageControl;
-using TurtleToastService.DemoApp.Services;
+using TurtleToast.DemoApp.Pages.MessageControl;
+using TurtleToast.DemoApp.Services;
 using Wpf.Ui;
 
-namespace TurtleToastService.DemoApp;
+namespace TurtleToast.DemoApp;
 
 /// <summary>
 /// Interaction logic for App.xaml

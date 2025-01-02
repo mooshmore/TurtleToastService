@@ -3,7 +3,7 @@ using System.Windows;
 using Wpf.Ui;
 using Wpf.Ui.Controls;
 
-namespace TurtleToastService.DemoApp;
+namespace TurtleToast.DemoApp;
 
 public partial class MainWindow : INavigationWindow
 {

@@ -1,18 +1,17 @@
 ﻿using System.Windows.Controls;
 
-namespace TurtleToastService.Service.Views.Confirmation
+namespace TurtleToast.Service.Views.Confirmation;
+
+/// <summary>
+/// Interaction logic for ConfirmationToastView.xaml
+/// </summary>
+public partial class ConfirmationToastView : UserControl
 {
     /// <summary>
-    /// Interaction logic for ConfirmationToastView.xaml
+    /// A toast message with a button requiring user confirmation.
     /// </summary>
-    public partial class ConfirmationToastView : UserControl
+    public ConfirmationToastView()
     {
-        /// <summary>
-        /// A toast message with a button requiring user confirmation.
-        /// </summary>
-        public ConfirmationToastView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

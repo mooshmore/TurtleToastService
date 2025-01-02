@@ -1,18 +1,17 @@
 ﻿using System.Windows.Controls;
 
-namespace TurtleToastService.Service.Views.Information
+namespace TurtleToast.Service.Views.Information;
+
+/// <summary>
+/// Interaction logic for InformationToastMessageView.xaml
+/// </summary>
+public partial class InformationToastView : UserControl
 {
     /// <summary>
-    /// Interaction logic for InformationToastMessageView.xaml
+    /// A basic toast message with two text boxes.
     /// </summary>
-    public partial class InformationToastView : UserControl
+    public InformationToastView()
     {
-        /// <summary>
-        /// A basic toast message with two text boxes.
-        /// </summary>
-        public InformationToastView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
