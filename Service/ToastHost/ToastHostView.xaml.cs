@@ -20,8 +20,8 @@ namespace TurtleToastService.Service.ToastHost
             // Todo: Make it possible to edit toast properties such as border radius, border thickness, 
             // Todo: Add appearing / dissapearing animations?
 
-            ThemeManager.ThemeChanged += ChangeTheme;
-            ThemeManager.ChangeTheme(Theme);
+            TurtleToastThemeManager.ThemeChanged += ChangeTheme;
+            TurtleToastThemeManager.ChangeTheme(Theme);
         }
 
         public static readonly DependencyProperty ToastThemeProperty = DependencyProperty.Register(
@@ -40,13 +40,13 @@ namespace TurtleToastService.Service.ToastHost
             set
             {
                 SetValue(ToastThemeProperty, value);
-                ThemeManager.ChangeTheme(value);
+                TurtleToastThemeManager.ChangeTheme(value);
             }
         }
 
         private static void OnThemePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ThemeManager.ChangeTheme((ToastTheme)e.NewValue);
+            TurtleToastThemeManager.ChangeTheme((ToastTheme)e.NewValue);
         }
 
         /// <summary>

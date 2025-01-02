@@ -9,7 +9,6 @@
     xmlns:TurtleToast="clr-namespace:TurtleToastService.Service.ToastHost;assembly=TurtleToastService.Service"
     xmlns:ThemeManager="clr-namespace:TurtleToastService.Service.ToastStyling;assembly=TurtleToastService.Service"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    xmlns:messageControl="clr-namespace:TurtleToastService.DemoApp.Pages.MessageControl"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
     Height="650" Width="1000"

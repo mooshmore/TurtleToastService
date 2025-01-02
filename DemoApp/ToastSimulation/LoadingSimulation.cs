@@ -1,5 +1,5 @@
 ﻿using System;
-using TurtleToastService.Service;
+using TurtleToastService.Service.Core;
 using TurtleToastService.Service.Views.Loading;
 
 namespace TurtleToastService.DemoApp.ToastSimulation;
@@ -32,7 +32,7 @@ internal static class LoadingSimulation
     /// </summary>
     internal static void LoadingCount()
     {
-        var toast = TurtleToast.Loading("Loading count", "count", _loadingMaxCount, displayMode: ProgressDisplayMode.FullCount);
+        var toast = TurtleToastService.Service.Core.TurtleToastService.Default.Loading("Loading count", "count", _loadingMaxCount, displayMode: ProgressDisplayMode.FullCount);
         AssignLoadingEvents(toast);
     }
 
@@ -41,7 +41,7 @@ internal static class LoadingSimulation
     /// </summary>
     internal static void LoadingInfinite()
     {
-        var toast = TurtleToast.Loading("Loading infinite", "This can take a while", displayMode: ProgressDisplayMode.Count);
+        var toast = TurtleToastService.Service.Core.TurtleToastService.Default.Loading("Loading infinite", "This can take a while", displayMode: ProgressDisplayMode.Count);
         AssignLoadingEvents(toast);
     }
 

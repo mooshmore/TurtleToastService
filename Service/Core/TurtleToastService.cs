@@ -121,7 +121,7 @@ namespace TurtleToastService.Service.Core
             }
         }
 
-        private bool disposed = false;
+        private bool _disposed = false;
         public void Dispose()
         {
             Dispose(true);
@@ -130,14 +130,14 @@ namespace TurtleToastService.Service.Core
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
                     ClearAll();
                 }
 
-                disposed = true;
+                _disposed = true;
             }
         }
     }

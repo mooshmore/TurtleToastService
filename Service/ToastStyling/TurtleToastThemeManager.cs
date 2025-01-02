@@ -6,7 +6,7 @@ namespace TurtleToastService.Service.ToastStyling
     /// <summary>
     /// A class responsible for controlling the theme of the service.
     /// </summary>
-    public static class ThemeManager
+    public static class TurtleToastThemeManager
     {
         /// <summary>
         /// Changes the theme to the chosen one and sets the <see cref="ActiveTheme"/>.
@@ -17,7 +17,7 @@ namespace TurtleToastService.Service.ToastStyling
             Uri uri = new($"/TurtleToastService.Service;component/ToastStyling/Themes/{theme}.xaml", UriKind.Relative);
             var themeDictionary = new ResourceDictionary() { Source = uri };
             ActiveTheme = theme;
-            ThemeChanged.Invoke(null, themeDictionary);
+            ThemeChanged?.Invoke(null, themeDictionary);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace TurtleToastService.Service.ToastStyling
         /// <summary>
         /// A event that is raised then the <see cref="ActiveTheme"/> is changed.
         /// </summary>
-        public static EventHandler<ResourceDictionary> ThemeChanged { get; set; }
+        public static EventHandler<ResourceDictionary>? ThemeChanged { get; set; }
     }
 
     /// <summary>
