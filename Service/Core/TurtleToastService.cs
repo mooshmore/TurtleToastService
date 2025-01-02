@@ -1,7 +1,7 @@
-﻿using TurtleToastService.Service.ToastHost;
+﻿using CrossUtilitiesWPF.MiscUtilities;
 using System;
 using System.Collections.Generic;
-using CrossUtilitiesWPF.MiscUtilities;
+using TurtleToastService.Service.ToastHost;
 
 namespace TurtleToastService.Service.Core
 {
@@ -9,12 +9,19 @@ namespace TurtleToastService.Service.Core
     /// A service implementation for displaying toast messages.
     /// Requires the <see cref="ToastHostView"/> control to be placed in a window where the messages should appear.
     /// </summary>
-    public class TurtleToastService : IToastService, IDisposable
+    public class TurtleToastService : ITurtleToastService, IDisposable
     {
         public TurtleToastService()
         {
             DataTemplateManager.LoadDataTemplatesByConvention();
         }
+
+        private static readonly Lazy<TurtleToastService> _defaultInstance = new(() => new TurtleToastService());
+
+        /// <summary>
+        /// A default instance for use in non-DI scenarios.
+        /// </summary>
+        public static ITurtleToastService Default => _defaultInstance.Value;
 
         /// <summary>
         /// The queue containing the toast messages.
